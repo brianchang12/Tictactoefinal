@@ -1,11 +1,16 @@
 package com.bcapp.tictactoe;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.TranslateAnimation;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.Stack;
@@ -19,6 +24,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     private int y;
     private Stack<Tile> stack_view;
     private boolean game_over;
+    private CardView board;
+    private Button new_game_button;
+    private ImageButton replay;
 
 
     @Override
@@ -52,6 +60,19 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 tiles[i][j].getTextView().setOnTouchListener(this);
             }
         }
+        startAnimation();
+    }
+
+    private void startAnimation() {
+        board = findViewById(R.id.boardid);
+        new_game_button = findViewById(R.id.new_game);
+        replay = findViewById(R.id.replayid);
+        AlphaAnimation appear = new AlphaAnimation(0f, 1f);
+        appear.setDuration(1500);
+        appear.setRepeatCount(0);
+        board.setAnimation(appear);
+        new_game_button.setAnimation(appear);
+        replay.setAnimation(appear);
     }
 
     @Override
